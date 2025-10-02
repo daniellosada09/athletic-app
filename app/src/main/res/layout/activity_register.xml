@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center"
+    android:background="#FFFFFF">
+
+    <ImageView
+        android:id="@+id/ivLogoRegister"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_marginBottom="24dp"
+        android:contentDescription="@string/app_name" />
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/tvRegisterTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/crear_cuenta"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="32dp"
+        android:textColor="#000000" />
+
+    <!-- Nombre -->
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/nombre_completo"
+        android:inputType="textPersonName"
+        android:padding="12dp"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Correo -->
+    <EditText
+        android:id="@+id/etEmailRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/correo_electronico"
+        android:inputType="textEmailAddress"
+        android:padding="12dp"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Contraseña -->
+    <EditText
+        android:id="@+id/etPasswordRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/contrasena"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Confirmar contraseña -->
+    <EditText
+        android:id="@+id/etConfirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/confirmar_contrasena"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Botón registro -->
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/registrarse"
+        android:padding="12dp"
+        android:backgroundTint="#1976D2"
+        android:textColor="#FFFFFF" />
+
+    <!-- Texto para iniciar sesión -->
+    <TextView
+        android:id="@+id/tvGoToLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ya_tengo_cuenta"
+        android:textColor="#1976D2"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>
