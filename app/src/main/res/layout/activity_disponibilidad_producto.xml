@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scrollDisponibilidad"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/layoutDisponibilidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/tvTituloDisponibilidad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/disponibilidad_producto"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Nombre del producto -->
+            <TextView
+                android:id="@+id/tvNombreDisp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre del producto"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Stock -->
+            <TextView
+                android:id="@+id/tvStock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stock_disponible"
+                android:textColor="#555555"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Estado -->
+            <TextView
+                android:id="@+id/tvEstadoProducto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/en_stock"
+                android:textColor="#4CAF50"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Botón actualizar disponibilidad -->
+            <Button
+                android:id="@+id/btnActualizarDisponibilidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/actualizar_disponibilidad"
+                android:backgroundTint="#1976D2"
+                android:textColor="#FFFFFF"
+                android:padding="12dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,31 @@
     <string name="athletica_app">Athletica App</string>
     <string name="perfil">Perfil</string>
     <string name="carrito">Carrito</string>
-
+    <string name="bienvenido_tienda_virtual">¡Bienvenido a la Tienda Virtual!</string>
+    <string name="explora_productos">Explora los mejores productos a tu alcance</string>
+    <string name="version_app">Versión 1.0</string>
+    <string name="recuperar_contrasena">Recuperar contraseña</string>
+    <string name="ingresa_correo_recuperacion">Ingresa tu correo electrónico para recibir un enlace de recuperación</string>
+    <string name="enviar_enlace">Enviar enlace</string>
+    <string name="volver_login">Volver al inicio de sesión</string>
+    <string name="foto_perfil">Foto de perfil</string>
+    <string name="telefono">Teléfono</string>
+    <string name="direccion">Dirección</string>
+    <string name="editar">Editar</string>
+    <string name="guardar">Guardar</string>
+    <string name="eliminar_cuenta">Eliminar cuenta</string>
+    <string name="gestion_productos">Gestión de Productos</string>
+    <string name="agregar_producto">Agregar producto</string>
+    <string name="producto">Producto</string>
+    <string name="disponibilidad_producto">Disponibilidad del Producto</string>
+    <string name="stock_disponible">Stock disponible: </string>
+    <string name="en_stock">En stock</string>
+    <string name="actualizar_disponibilidad">Actualizar disponibilidad</string>
+    <string name="ubicacion_tiendas">Ubicación de tiendas</string>
+    <string name="tu_carrito">Tu carrito</string>
+    <string name="total_carrito">Total: $0.00</string>
+    <string name="finalizar_compra">Finalizar compra</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
