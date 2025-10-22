@@ -6,15 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.athleticaapp.R
 import com.example.athleticaapp.databinding.FragmentInicioBinding
-import com.example.athleticaapp.ui.auth.LoginActivity
-import com.example.athleticaapp.ui.auth.RegistroActivity
 import android.widget.Toast
+import com.example.athleticaapp.LoginActivity
+import com.example.athleticaapp.RegisterActivity
 
 class InicioFragment : Fragment() {
 
-    private var _binding: FragmentInicioBinding? = null
+        private var _binding: FragmentInicioBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -37,7 +36,7 @@ class InicioFragment : Fragment() {
         }
 
         binding.btnIrRegistro.setOnClickListener {
-            val intent = Intent(requireContext(), RegistroActivity::class.java)
+            val intent = Intent(requireContext(), RegisterActivity::class.java)
             startActivity(intent)
         }
 

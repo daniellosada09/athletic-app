@@ -6,16 +6,17 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
 class ProductAdapter(private val productList: List<Product>) :
     RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
-    class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val ivProduct: ImageView = itemView.findViewById(R.id.ivProduct)
-        val tvName: TextView = itemView.findViewById(R.id.tvName)
-        val tvPrice: TextView = itemView.findViewById(R.id.tvPrice)
-        val btnAddCart: Button = itemView.findViewById(R.id.btnAddCart)
+    inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val ivProductImage: ImageView = itemView.findViewById(R.id.ivProductImage)
+        val tvProductName: TextView = itemView.findViewById(R.id.tvProductName)
+        val tvProductPrice: TextView = itemView.findViewById(R.id.tvProductPrice)
+        val btnAddToCart: Button = itemView.findViewById(R.id.btnAddToCart)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
@@ -24,15 +25,17 @@ class ProductAdapter(private val productList: List<Product>) :
         return ProductViewHolder(view)
     }
 
+    override fun getItemCount(): Int = productList.size
+
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = productList[position]
-        holder.ivProduct.setImageResource(product.imageResId)
-        holder.tvName.text = product.name
-        holder.tvPrice.text = "$${product.price}"
-        holder.btnAddCart.setOnClickListener {
-            // Aquí va la lógica para añadir al carrito
+        holder.tvProductName.text = product.name
+        holder.tvProductPrice.text = "$${String.format("%,.0f", product.price)}"
+        holder.ivProductImage.setImageResource(product.imageResId)
+
+        holder.btnAddToCart.setOnClickListener {
+            CartRepository.addToCart(product)
+            Toast.makeText(holder.itemView.context, "${product.name} agregado al carrito", Toast.LENGTH_SHORT).show()
         }
     }
-
-    override fun getItemCount(): Int = productList.size
 }

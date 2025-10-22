@@ -1,5 +1,6 @@
 package com.example.athleticaapp
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -12,51 +13,44 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class RegisterActivity : AppCompatActivity() {
-    private var etName: EditText? = null
-    private var etEmailRegister: EditText? = null
-    private var etPasswordRegister: EditText? = null
-    private var etConfirmPassword: EditText? = null
-    private var btnRegister: Button? = null
-    private var tvGoToLogin: TextView? = null
+    private lateinit var etName: EditText
+    private lateinit var etEmailRegister: EditText
+    private lateinit var etPasswordRegister: EditText
+    private lateinit var etConfirmPassword: EditText
+    private lateinit var btnRegister: Button
+    private lateinit var tvGoToLogin: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        // Referenciar vistas
-        etName = findViewById<EditText?>(R.id.etName)
-        etEmailRegister = findViewById<EditText?>(R.id.etEmailRegister)
-        etPasswordRegister = findViewById<EditText?>(R.id.etPasswordRegister)
-        etConfirmPassword = findViewById<EditText?>(R.id.etConfirmPassword)
-        btnRegister = findViewById<Button?>(R.id.btnRegister)
-        tvGoToLogin = findViewById<TextView?>(R.id.tvGoToLogin)
+        // Referencias
+        etName = findViewById(R.id.etName)
+        etEmailRegister = findViewById(R.id.etEmailRegister)
+        etPasswordRegister = findViewById(R.id.etPasswordRegister)
+        etConfirmPassword = findViewById(R.id.etConfirmPassword)
+        btnRegister = findViewById(R.id.btnRegister)
+        tvGoToLogin = findViewById(R.id.tvGoToLogin)
 
         // Acción del botón de registro
-        btnRegister!!.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View?) {
-                registerUser()
-            }
-        })
+        btnRegister.setOnClickListener { registerUser() }
 
         // Ir al login
-        tvGoToLogin!!.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View?) {
-                val intent: Intent = Intent(this@RegisterActivity, LoginActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-        })
+        tvGoToLogin.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
     }
 
     private fun registerUser() {
-        val name = etName!!.getText().toString().trim { it <= ' ' }
-        val email = etEmailRegister!!.getText().toString().trim { it <= ' ' }
-        val password = etPasswordRegister!!.getText().toString().trim { it <= ' ' }
-        val confirmPassword = etConfirmPassword!!.getText().toString().trim { it <= ' ' }
+        val name = etName.text.toString().trim()
+        val email = etEmailRegister.text.toString().trim()
+        val password = etPasswordRegister.text.toString().trim()
+        val confirmPassword = etConfirmPassword.text.toString().trim()
 
-        // Validaciones básicas
-        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(email) ||
-            TextUtils.isEmpty(password) || TextUtils.isEmpty(confirmPassword)
+        // Validaciones
+        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(email)
+            || TextUtils.isEmpty(password) || TextUtils.isEmpty(confirmPassword)
         ) {
             Toast.makeText(this, "Por favor completa todos los campos", Toast.LENGTH_SHORT).show()
             return
@@ -68,11 +62,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         if (password.length < 6) {
-            Toast.makeText(
-                this,
-                "La contraseña debe tener al menos 6 caracteres",
-                Toast.LENGTH_SHORT
-            ).show()
+            Toast.makeText(this, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -81,12 +71,19 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
 
-        // Aquí podrías guardar los datos en una base de datos local o Firebase
-        Toast.makeText(this, "Registro exitoso", Toast.LENGTH_LONG).show()
+        // Guardar datos del usuario localmente
+        val newUser = User(
+            id = UserRepository.getAllUsers().size + 1,
+            name = name,
+            email = email,
+            password = password,
+            role = UserRole.GENERAL
+        )
 
-        // Redirigir al login
-        val intent: Intent = Intent(this@RegisterActivity, LoginActivity::class.java)
-        startActivity(intent)
+        UserRepository.addUser(newUser)
+
+        Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this, LoginActivity::class.java))
         finish()
     }
 }

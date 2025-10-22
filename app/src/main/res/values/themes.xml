@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.AthleticaApp" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- Tema principal de la app -->
+    <style name="Theme.AthleticaApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Colores base -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryContainer">@color/purple_700</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryContainer</item>
+        <item name="android:navigationBarColor">?attr/colorPrimary</item>
+
+        <!-- Textos y fondo -->
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:windowBackground">@android:color/white</item>
+
+        <!-- Desactivar ActionBar -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
 </resources>

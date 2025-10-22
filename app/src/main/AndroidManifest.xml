@@ -14,9 +14,8 @@
         android:theme="@style/Theme.AthleticaApp"
         tools:targetApi="31">
 
-        <!-- ✅ HomeActivity será la inicial -->
         <activity
-            android:name=".HomeActivity"
+            android:name=".SplashActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.AthleticaApp">
@@ -26,9 +25,38 @@
             </intent-filter>
         </activity>
 
-        <!-- ✅ MainActivity queda registrada pero no es la inicial -->
         <activity
             android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AthleticaApp" />
+
+        <activity
+            android:name=".RecoverPasswordActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AthleticaApp" />
+
+        <activity
+            android:name=".ResetPasswordActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AthleticaApp" />
+
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AthleticaApp" />
+
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AthleticaApp" />
+
+        <activity
+            android:name=".ProductDetailActivity"
             android:exported="false"
             android:label="@string/app_name"
             android:theme="@style/Theme.AthleticaApp" />

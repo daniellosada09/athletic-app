@@ -1,8 +1,11 @@
 package com.example.athleticaapp.ui.theme.inicio
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.athleticaapp.LoginActivity
+import com.example.athleticaapp.RegisterActivity
 import com.example.athleticaapp.databinding.ActivityInicioBinding
 
 class InicioActivity : AppCompatActivity() {
@@ -26,7 +29,7 @@ class InicioActivity : AppCompatActivity() {
 
         // Botón para ir al Registro
         binding.btnIrRegistro.setOnClickListener {
-            val intent = Intent(this, RegistroActivity::class.java)
+            val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
 
