@@ -1,4 +1,6 @@
-package com.example.athleticaapp
+package com.example.athleticaapp.repositories
+
+import com.example.athleticaapp.Product
 
 object CartRepository {
     private val cartItems = mutableListOf<Product>()

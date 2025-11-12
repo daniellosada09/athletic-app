@@ -1,4 +1,4 @@
-package com.example.athleticaapp
+package com.example.athleticaapp.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Switch
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.athleticaapp.R
 
 class SettingsFragment : Fragment() {
 

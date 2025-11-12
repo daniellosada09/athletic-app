@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.athleticaapp.LoginActivity
-import com.example.athleticaapp.RegisterActivity
+import com.example.athleticaapp.activities.LoginActivity
+import com.example.athleticaapp.activities.RegisterActivity
 import com.example.athleticaapp.databinding.ActivityInicioBinding
 
 class InicioActivity : AppCompatActivity() {

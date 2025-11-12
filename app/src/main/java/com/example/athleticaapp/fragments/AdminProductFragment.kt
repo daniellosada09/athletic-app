@@ -1,4 +1,4 @@
-package com.example.athleticaapp
+package com.example.athleticaapp.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.athleticaapp.AdminProductAdapter
+import com.example.athleticaapp.Product
+import com.example.athleticaapp.repositories.ProductRepository
+import com.example.athleticaapp.R
 
 class AdminProductFragment : Fragment() {
 
@@ -34,15 +38,23 @@ class AdminProductFragment : Fragment() {
         etProductDescription = view.findViewById(R.id.etProductDescription)
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = AdminProductAdapter(ProductRepository.getAllProducts().toMutableList()) { index, action ->
+        adapter = AdminProductAdapter(
+            ProductRepository.getAllProducts().toMutableList()
+        ) { index, action ->
             when (action) {
                 "edit" -> {
-                    Toast.makeText(requireContext(), "Editar producto aún no implementado", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Editar producto aún no implementado",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
+
                 "delete" -> {
                     ProductRepository.deleteProduct(index)
                     adapter.updateList(ProductRepository.getAllProducts())
-                    Toast.makeText(requireContext(), "Producto eliminado", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Producto eliminado", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         }

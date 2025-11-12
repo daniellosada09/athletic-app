@@ -1,4 +1,7 @@
-package com.example.athleticaapp
+package com.example.athleticaapp.repositories
+
+import com.example.athleticaapp.Product
+import com.example.athleticaapp.R
 
 object ProductRepository {
     private val products = mutableListOf<Product>()

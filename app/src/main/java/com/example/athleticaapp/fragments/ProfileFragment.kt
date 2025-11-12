@@ -1,4 +1,4 @@
-package com.example.athleticaapp
+package com.example.athleticaapp.fragments
 
 import android.app.AlertDialog
 import android.content.Context
@@ -11,6 +11,9 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.athleticaapp.R
+import com.example.athleticaapp.User
+import com.example.athleticaapp.repositories.UserRepository
 
 class ProfileFragment : Fragment() {
 

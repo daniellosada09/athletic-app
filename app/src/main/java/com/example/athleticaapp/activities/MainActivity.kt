@@ -1,8 +1,14 @@
-package com.example.athleticaapp
+package com.example.athleticaapp.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.athleticaapp.R
+import com.example.athleticaapp.repositories.UserRepository
+import com.example.athleticaapp.fragments.AdminProductFragment
+import com.example.athleticaapp.fragments.CartFragment
+import com.example.athleticaapp.fragments.HomeFragment
+import com.example.athleticaapp.fragments.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {

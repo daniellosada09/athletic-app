@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.athleticaapp.databinding.FragmentInicioBinding
 import android.widget.Toast
-import com.example.athleticaapp.LoginActivity
-import com.example.athleticaapp.RegisterActivity
+import com.example.athleticaapp.activities.LoginActivity
+import com.example.athleticaapp.activities.RegisterActivity
 
 class InicioFragment : Fragment() {
 

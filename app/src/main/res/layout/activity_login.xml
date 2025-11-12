@@ -7,7 +7,7 @@
     android:padding="24dp"
     android:gravity="center"
     android:background="#FFFFFF"
-    tools:context=".LoginActivity">
+    tools:context=".activities.LoginActivity">
 
     <!-- Logo de la app -->
     <ImageView
@@ -66,7 +66,7 @@
         android:id="@+id/btnGoogle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ingresar con Google"
+        android:text="@string/login_google"
         android:backgroundTint="@color/white"
         android:textColor="@color/black"
         android:drawablePadding="8dp"

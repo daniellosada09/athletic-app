@@ -1,4 +1,4 @@
-package com.example.athleticaapp
+package com.example.athleticaapp.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.athleticaapp.repositories.CartRepository
+import com.example.athleticaapp.ProductAdapter
+import com.example.athleticaapp.R
 
 class CartFragment : Fragment() {
 

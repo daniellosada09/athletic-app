@@ -1,16 +1,18 @@
-package com.example.athleticaapp
+package com.example.athleticaapp.activities
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.athleticaapp.R
+import com.example.athleticaapp.User
+import com.example.athleticaapp.repositories.UserRepository
+import com.example.athleticaapp.UserRole
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var etName: EditText

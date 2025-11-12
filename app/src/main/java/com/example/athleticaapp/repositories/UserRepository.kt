@@ -1,4 +1,7 @@
-package com.example.athleticaapp
+package com.example.athleticaapp.repositories
+
+import com.example.athleticaapp.User
+import com.example.athleticaapp.UserRole
 
 object UserRepository {
     private val users = mutableListOf<User>()
