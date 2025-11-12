@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1035571767687",
+    "project_id": "athleticaapp-6331a",
+    "storage_bucket": "athleticaapp-6331a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035571767687:android:b69cbc35c08a35dcb3cb22",
+        "android_client_info": {
+          "package_name": "com.example.athleticaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1035571767687-0a1lijl4j7vfgrd90j3q376chh7jje2b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9rK3i1uHFzEfxC0huycYZ_zQ0cpRP9Ns"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1035571767687-0a1lijl4j7vfgrd90j3q376chh7jje2b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
