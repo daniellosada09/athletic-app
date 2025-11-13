@@ -8,16 +8,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.athleticaapp.repositories.CartRepository
+import com.example.athleticaapp.api.dto.product.ProductDto
 
-class ProductAdapter(private val productList: List<Product>) :
-    RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+class ProductAdapter(
+    private val productList: List<ProductDto>,
+    private val onAddToCart: ((ProductDto) -> Unit)? = null
+) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ivProductImage: ImageView = itemView.findViewById(R.id.ivProductImage)
         val tvProductName: TextView = itemView.findViewById(R.id.tvProductName)
         val tvProductPrice: TextView = itemView.findViewById(R.id.tvProductPrice)
-        val btnAddToCart: Button = itemView.findViewById(R.id.btnAddToCart)
+        val btnAddToCart: Button? = itemView.findViewById(R.id.btnAddToCart)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
@@ -30,13 +32,17 @@ class ProductAdapter(private val productList: List<Product>) :
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = productList[position]
-        holder.tvProductName.text = product.name
-        holder.tvProductPrice.text = "$${String.format("%,.0f", product.price)}"
-        holder.ivProductImage.setImageResource(product.imageResId)
 
-        holder.btnAddToCart.setOnClickListener {
-            CartRepository.addToCart(product)
-            Toast.makeText(holder.itemView.context, "${product.name} agregado al carrito", Toast.LENGTH_SHORT).show()
+        holder.tvProductName.text = product.title
+        holder.tvProductPrice.text = "$${String.format("%,.0f", product.price)}"
+
+        // Como el backend envía URL, mostramos placeholder
+        holder.ivProductImage.setImageResource(R.mipmap.ic_launcher)
+
+        // Si el botón existe (solo en el Home)
+        holder.btnAddToCart?.setOnClickListener {
+            onAddToCart?.invoke(product)
+            Toast.makeText(holder.itemView.context, "${product.title} agregado al carrito", Toast.LENGTH_SHORT).show()
         }
     }
 }

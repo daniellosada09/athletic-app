@@ -1,15 +1,15 @@
 package com.example.athleticaapp.repositories
 
-import com.example.athleticaapp.Product
+import com.example.athleticaapp.api.dto.product.ProductDto
 
 object CartRepository {
-    private val cartItems = mutableListOf<Product>()
+    private val cartItems = mutableListOf< ProductDto>()
 
-    fun addToCart(product: Product) {
+    fun addToCart(product: ProductDto) {
         cartItems.add(product)
     }
 
-    fun getCart(): List<Product> = cartItems
+    fun getCart(): List<ProductDto> = cartItems
 
     fun clearCart() {
         cartItems.clear()

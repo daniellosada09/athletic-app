@@ -9,38 +9,47 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.athleticaapp.repositories.CartRepository
+import com.example.athleticaapp.CartManager
 import com.example.athleticaapp.ProductAdapter
 import com.example.athleticaapp.R
+import com.example.athleticaapp.api.dto.product.ProductDto
 
 class CartFragment : Fragment() {
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var tvTotal: TextView
+    private lateinit var btnClear: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+
         val view = inflater.inflate(R.layout.fragment_cart, container, false)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerCart)
-        val tvTotal = view.findViewById<TextView>(R.id.tvTotal)
-        val btnClear = view.findViewById<Button>(R.id.btnClearCart)
+        recyclerView = view.findViewById(R.id.recyclerCart)
+        tvTotal = view.findViewById(R.id.tvTotal)
+        btnClear = view.findViewById(R.id.btnClearCart)
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        // Cargar productos del carrito
-        val cartItems = CartRepository.getCart()
-        recyclerView.adapter = ProductAdapter(cartItems)
-
-        // Mostrar total
-        val total = CartRepository.getTotal()
-        tvTotal.text = "Total: $${String.format("%,.0f", total)}"
+        loadCart()
 
         btnClear.setOnClickListener {
-            CartRepository.clearCart()
-            recyclerView.adapter = ProductAdapter(emptyList())
-            tvTotal.text = "Total: $0"
+            CartManager.clearCart(requireContext())
+            loadCart()
         }
 
         return view
+    }
+
+    private fun loadCart() {
+        val cartItems: List<ProductDto> = CartManager.getCart(requireContext())
+
+        // Usa el ProductAdapter UNIFICADO
+        recyclerView.adapter = ProductAdapter(cartItems)
+
+        val total = cartItems.sumOf { it.price }
+        tvTotal.text = "Total: $${String.format("%,.0f", total)}"
     }
 }

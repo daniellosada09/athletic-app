@@ -1,39 +1,43 @@
 package com.example.athleticaapp.repositories
 
-import com.example.athleticaapp.Product
-import com.example.athleticaapp.R
+import android.content.Context
+import com.example.athleticaapp.api.client.ApiClient
+import com.example.athleticaapp.api.dto.product.CreateProductRequest
+import com.example.athleticaapp.api.dto.product.ProductDto
+import com.example.athleticaapp.api.services.ProductApi
 
-object ProductRepository {
-    private val products = mutableListOf<Product>()
+class ProductRepository(context: Context) {
 
-    init {
-        // Productos por defecto
-        products.addAll(
-            listOf(
-                Product("Camiseta Deportiva", 59900.0, R.mipmap.ic_launcher),
-                Product("Tenis Running", 199900.0, R.mipmap.ic_launcher),
-                Product("Balón de Fútbol", 89000.0, R.mipmap.ic_launcher),
-                Product("Guantes de Gym", 35000.0, R.mipmap.ic_launcher),
-                Product("Short Deportivo", 45000.0, R.mipmap.ic_launcher)
-            )
+    private val api = ApiClient.create(context, ProductApi::class.java)
+
+    suspend fun fetchAllProducts(): List<ProductDto> {
+        val response = api.getAllProducts()
+        return response.data // tu API devuelve {status, message, data}
+    }
+
+    suspend fun createProduct(
+        title: String,
+        description: String,
+        price: Double,
+        stock: Int,
+        categoryId: String,
+        image: String
+    ): ProductDto {
+
+        val request = CreateProductRequest(
+            title = title,
+            description = description,
+            price = price,
+            stock = stock,
+            categoryId = categoryId,
+            image = image
         )
+
+        val response = api.createProduct(request)
+        return response
     }
 
-    fun getAllProducts(): List<Product> = products
-
-    fun addProduct(product: Product) {
-        products.add(product)
-    }
-
-    fun updateProduct(index: Int, updatedProduct: Product) {
-        if (index in products.indices) {
-            products[index] = updatedProduct
-        }
-    }
-
-    fun deleteProduct(index: Int) {
-        if (index in products.indices) {
-            products.removeAt(index)
-        }
+    suspend fun deleteProduct(id: String) {
+        api.deleteProduct(id)
     }
 }

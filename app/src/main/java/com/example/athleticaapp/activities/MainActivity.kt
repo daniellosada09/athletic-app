@@ -1,10 +1,10 @@
 package com.example.athleticaapp.activities
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.athleticaapp.R
-import com.example.athleticaapp.repositories.UserRepository
 import com.example.athleticaapp.fragments.AdminProductFragment
 import com.example.athleticaapp.fragments.CartFragment
 import com.example.athleticaapp.fragments.HomeFragment
@@ -14,7 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
 
     private lateinit var bottomNavigation: BottomNavigationView
-    private var userRole: String = "user"
+    private var userRole: String = "user" // valor por defecto
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,9 +22,11 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigation = findViewById(R.id.bottomNavigation)
 
-        // Obtener el rol directamente desde UserRepository
-        val currentUser = UserRepository.currentUser
-        userRole = currentUser?.role?.name?.lowercase() ?: "user"
+        // Obtener el rol desde el Intent enviado por LoginActivity
+        val roleFromIntent = intent.getStringExtra("ROLE_NAME") ?: "USER"
+        userRole = roleFromIntent.lowercase()
+
+        Log.d("MainActivity", "Rol recibido: $roleFromIntent (normalizado: $userRole)")
 
         // Configurar el menú según el rol
         setupMenuForRole()
@@ -58,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         menu.add(0, R.id.menu_profile, 2, "Perfil")
             .setIcon(android.R.drawable.ic_menu_myplaces)
 
-        // Solo admin
+        // Solo admin (backend envía "ADMIN")
         if (userRole == "admin") {
             menu.add(0, R.id.menu_admin_product, 3, "Productos")
                 .setIcon(android.R.drawable.ic_menu_manage)

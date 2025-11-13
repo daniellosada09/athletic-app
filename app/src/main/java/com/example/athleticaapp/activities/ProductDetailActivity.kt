@@ -7,7 +7,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.athleticaapp.repositories.CartRepository
-import com.example.athleticaapp.Product
 import com.example.athleticaapp.R
 
 class ProductDetailActivity : AppCompatActivity() {
@@ -34,10 +33,10 @@ class ProductDetailActivity : AppCompatActivity() {
         tvProductPrice.text = "$${String.format("%,.0f", price)}"
         tvProductDescription.text = description
 
-        btnAddToCart.setOnClickListener {
-            val product = Product(name ?: "", price, imageResId, description)
+        /*btnAddToCart.setOnClickListener {
+            val product = Product(name ?: "", 0.0, "", 0.0)
             CartRepository.addToCart(product)
             Toast.makeText(this, "Producto agregado al carrito", Toast.LENGTH_SHORT).show()
-        }
+        }*/
     }
 }
