@@ -15,10 +15,16 @@
         android:title="@string/menu_perfil"
         android:icon="@android:drawable/ic_menu_myplaces" />
 
+    <item
+        android:id="@+id/menu_addresses"
+        android:title="Direcciones"
+        android:icon="@android:drawable/ic_menu_compass" />
+
     <!-- Solo visible para administradores -->
     <item
         android:id="@+id/menu_admin_product"
         android:title="@string/gestion_productos"
         android:icon="@android:drawable/ic_menu_manage"
         android:visible="false" />
+
 </menu>

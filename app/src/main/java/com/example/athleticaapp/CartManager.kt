@@ -2,79 +2,36 @@ package com.example.athleticaapp
 
 import android.content.Context
 import com.example.athleticaapp.api.dto.product.ProductDto
-import org.json.JSONArray
-import org.json.JSONObject
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 object CartManager {
 
-    private const val PREFS_NAME = "shopping_cart"
-    private const val KEY_CART = "cart_items"
+    private const val PREF_NAME = "cart_prefs"
+    private const val CART_KEY = "cart_items"
 
-    // ============================
-    // AGREGAR AL CARRITO
-    // ============================
     fun addToCart(context: Context, product: ProductDto) {
-        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        val currentCart = getCart(context).toMutableList()
-
-        currentCart.add(product)
-
-        val jsonArray = JSONArray()
-
-        currentCart.forEach {
-            val obj = JSONObject()
-
-            obj.put("id", it.id)
-            obj.put("title", it.title)
-            obj.put("description", it.description)
-            obj.put("image", it.image ?: "")
-            obj.put("price", it.price)
-            obj.put("stock", it.stock)
-            obj.put("categoryId", it.categoryId)
-
-            jsonArray.put(obj)
-        }
-
-        prefs.edit().putString(KEY_CART, jsonArray.toString()).apply()
+        val cart = getCart(context).toMutableList()
+        cart.add(product)
+        saveCart(context, cart)
     }
 
-    // ============================
-    // OBTENER CARRITO
-    // ============================
     fun getCart(context: Context): List<ProductDto> {
-        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        val jsonString = prefs.getString(KEY_CART, null) ?: return emptyList()
-
-        val jsonArray = JSONArray(jsonString)
-        val productList = mutableListOf<ProductDto>()
-
-        for (i in 0 until jsonArray.length()) {
-            val obj = jsonArray.getJSONObject(i)
-
-            val product = ProductDto(
-                id = obj.getString("id"),
-                title = obj.getString("title"),
-                description = obj.optString("description"),
-                image = obj.optString("image", null),
-                price = obj.getDouble("price"),
-                stock = obj.optInt("stock", 0),
-                categoryId = obj.optString("categoryId"),
-                active = true, // el carrito no requiere este valor
-                createdAt = "",
-                updatedAt = ""
-            )
-
-            productList.add(product)
-        }
-
-        return productList
+        val shared = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        val json = shared.getString(CART_KEY, null) ?: return emptyList()
+        val type = object : TypeToken<List<ProductDto>>() {}.type
+        return Gson().fromJson(json, type)
     }
 
-    // ============================
-    // LIMPIAR CARRITO
-    // ============================
     fun clearCart(context: Context) {
-        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        prefs.edit().remove(KEY_CART).apply()
+        val shared = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        shared.edit().remove(CART_KEY).apply()
+    }
+
+    fun saveCart(context: Context, cart: List<ProductDto>) {
+        val shared = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        val json = Gson().toJson(cart)
+        shared.edit().putString(CART_KEY, json).apply()
     }
 }
+

@@ -26,9 +26,19 @@
         android:layout_gravity="center"
         android:layout_marginBottom="16dp" />
 
+    <Button
+        android:id="@+id/btnMisPedidos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mis pedidos"
+        android:backgroundTint="@color/purple_500"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="16dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recyclerHome"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
+
 </LinearLayout>

@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.athleticaapp.R
 import com.example.athleticaapp.api.client.AuthTokenManager
 import com.example.athleticaapp.repositories.AuthRepository
+import com.example.athleticaapp.session.UserSession
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -161,6 +162,9 @@ class LoginActivity : AppCompatActivity() {
 
                 val nombre = response.data.user.name
                 val roleName = response.data.user.role.name
+                val userId = response.data.user.id
+
+                UserSession.saveUserId(this@LoginActivity, userId)
 
                 Log.d(TAG, "Login normal OK. Rol: $roleName")
 

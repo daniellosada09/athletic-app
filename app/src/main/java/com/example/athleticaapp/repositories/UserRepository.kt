@@ -7,19 +7,6 @@ object UserRepository {
     private val users = mutableListOf<User>()
     var currentUser: User? = null
 
-    init {
-        // Usuario administrativo por defecto
-        users.add(
-            User(
-                id = 1,
-                name = "Administrador",
-                email = "admin@gmail.com",
-                password = "admin123",
-                role = UserRole.ADMIN
-            )
-        )
-    }
-
     fun addUser(user: User) {
         users.add(user)
     }

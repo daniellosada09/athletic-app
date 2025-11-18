@@ -19,6 +19,8 @@ class CartFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var tvTotal: TextView
     private lateinit var btnClear: Button
+    private lateinit var btnCheckout: Button
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +32,7 @@ class CartFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerCart)
         tvTotal = view.findViewById(R.id.tvTotal)
         btnClear = view.findViewById(R.id.btnClearCart)
+        btnCheckout = view.findViewById(R.id.btnCheckout)
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
@@ -40,13 +43,19 @@ class CartFragment : Fragment() {
             loadCart()
         }
 
+        btnCheckout.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, CreateOrderFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
         return view
     }
 
     private fun loadCart() {
-        val cartItems: List<ProductDto> = CartManager.getCart(requireContext())
+        val cartItems = CartManager.getCart(requireContext())
 
-        // Usa el ProductAdapter UNIFICADO
         recyclerView.adapter = ProductAdapter(cartItems)
 
         val total = cartItems.sumOf { it.price }

@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
 
-    private const val BASE_URL = "http://192.168.0.17:8080/api/"
+    private const val BASE_URL = "http://192.168.0.11:8080/api/"
 
     fun getClient(context: Context): Retrofit {
 
@@ -17,7 +17,7 @@ object ApiClient {
         }
 
         val httpClient = OkHttpClient.Builder()
-            .addInterceptor(AuthInterceptor(context))   // ← 🔥 TOKEN AUTOMÁTICO
+            .addInterceptor(AuthInterceptor(context))
             .addInterceptor(logging)
             .build()
 

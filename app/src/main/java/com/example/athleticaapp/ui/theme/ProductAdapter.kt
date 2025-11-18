@@ -36,13 +36,10 @@ class ProductAdapter(
         holder.tvProductName.text = product.title
         holder.tvProductPrice.text = "$${String.format("%,.0f", product.price)}"
 
-        // Como el backend envía URL, mostramos placeholder
         holder.ivProductImage.setImageResource(R.mipmap.ic_launcher)
 
-        // Si el botón existe (solo en el Home)
         holder.btnAddToCart?.setOnClickListener {
             onAddToCart?.invoke(product)
-            Toast.makeText(holder.itemView.context, "${product.title} agregado al carrito", Toast.LENGTH_SHORT).show()
         }
     }
 }
